@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var fetch = require("fetch");
 var core_1 = require("@angular/core");
 var ShippedSale = (function () {
     function ShippedSale() {
@@ -15,19 +16,26 @@ var ShippedSale = (function () {
 exports.ShippedSale = ShippedSale;
 var ShipListComponent = (function () {
     function ShipListComponent() {
-        this.sale = {
-            saleNo: 28374,
-            customer: "April L.",
-            lbs: 0
-        };
+        this.last_error = "";
     }
+    ShipListComponent.prototype.postItem = function (event) {
+        var _this = this;
+        event.preventDefault();
+        fetch('http://localhost:3000/api/v1', {
+            method: 'POST',
+            body: JSON.stringify({ text: this.textInputValue, complete: false }),
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin"
+        })
+            .then(function () { _this.textInputValue = ""; });
+    };
     return ShipListComponent;
 }());
 ShipListComponent = __decorate([
     core_1.Component({
         selector: 'ship-list',
-        templateUrl: 'shiplist.component.html',
-        styleUrls: ['shiplist.component.css'],
+        templateUrl: 'shiplist/shiplist.component.html',
+        styleUrls: ['shiplist/shiplist.component.css'],
     })
 ], ShipListComponent);
 exports.ShipListComponent = ShipListComponent;

@@ -10,7 +10,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms"); // <-- NgModel lives here
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
-var shiplist_component_1 = require("./shiplist.component");
+var shiplist_component_1 = require("./shiplist/shiplist.component");
 var DashModule = (function () {
     function DashModule() {
     }

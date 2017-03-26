@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { ShipListComponent }  from './shiplist.component';
+import { ShipListComponent }  from './shiplist/shiplist.component';
 
 @NgModule({
   imports: [

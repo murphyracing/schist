@@ -2,9 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 var express = require("express");
+var express_1 = require("express");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
+var api_1 = require("./api/v1/api");
 // Creates and configures an ExpressJS web server.
 var Web = (function () {
     //Run configuration methods on the Express instance.
@@ -23,17 +25,8 @@ var Web = (function () {
     // Configure API endpoints.
     Web.prototype.routes = function () {
         this.express.use(express.static(path.join(__dirname, 'dash')));
-        /* This is just to get up and running, and to make sure what we've got is
-         * working so far. This function will change when we start to add more
-         * API endpoints */
-        var router = express.Router();
-        // placeholder route handler
-        router.get('/', function (req, res, next) {
-            res.json({
-                message: 'Hello typescript!!'
-            });
-        });
-        this.express.use('/api/v1', router);
+        this.express.use('/api/v1', express_1.Router()
+            .post('/', function (req, res, next) { return api_1.default.post(req, res, next); }));
     };
     return Web;
 }());

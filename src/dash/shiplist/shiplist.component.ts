@@ -1,5 +1,7 @@
-import * as fetch from 'fetch';
+import * as request from 'request';
 import { Component } from '@angular/core';
+import {Headers, Http, RequestOptions, Response} from "@angular/http";
+import {Observable} from "rxjs";
 
 export class ShippedSale {
   saleNo: number;
@@ -13,19 +15,24 @@ export class ShippedSale {
   styleUrls: ['shiplist/shiplist.component.css'],
 })
 export class ShipListComponent {
+  constructor (private http: Http) {}
+
   textInputValue: string;
   last_error: string = "";
+  private ep = 'http://localhost:3000/api/v1';
 
   postItem(event) {
     event.preventDefault();
-    fetch(
-        'http://localhost:3000/api/v1',
-        {
-          method: 'POST',
-          body: JSON.stringify({text: this.textInputValue, complete: false}),
-          headers: { "Content-Type": "application/json" },
-          credentials: "same-origin"
-        })
-    .then(() => { this.textInputValue = "" });
+
+    const body = {text: this.textInputValue, complete: false};
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const options = new RequestOptions({headers: headers});
+
+    this.http
+        .post(this.ep, body, options)
+        .map((res:Response) => res.json())
+        .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
+    this.textInputValue = "";
   }
 }

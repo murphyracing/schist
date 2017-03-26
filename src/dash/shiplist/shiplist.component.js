@@ -6,8 +6,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var fetch = require("fetch");
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var rxjs_1 = require("rxjs");
 var ShippedSale = (function () {
     function ShippedSale() {
     }
@@ -15,19 +16,21 @@ var ShippedSale = (function () {
 }());
 exports.ShippedSale = ShippedSale;
 var ShipListComponent = (function () {
-    function ShipListComponent() {
+    function ShipListComponent(http) {
+        this.http = http;
         this.last_error = "";
+        this.ep = 'http://localhost:3000/api/v1';
     }
     ShipListComponent.prototype.postItem = function (event) {
-        var _this = this;
         event.preventDefault();
-        fetch('http://localhost:3000/api/v1', {
-            method: 'POST',
-            body: JSON.stringify({ text: this.textInputValue, complete: false }),
-            headers: { "Content-Type": "application/json" },
-            credentials: "same-origin"
-        })
-            .then(function () { _this.textInputValue = ""; });
+        var body = { text: this.textInputValue, complete: false };
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        this.http
+            .post(this.ep, body, options)
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return rxjs_1.Observable.throw(error.json().error || 'Server error'); });
+        this.textInputValue = "";
     };
     return ShipListComponent;
 }());

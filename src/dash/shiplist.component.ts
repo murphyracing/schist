@@ -8,8 +8,8 @@ export class ShippedSale {
 
 @Component({
   selector: 'ship-list',
-  templateUrl: 'dash/shiplist.html',
-  styleUrls: ['dash/shiplist.css'],
+  templateUrl: 'shiplist.component.html',
+  styleUrls: ['shiplist.component.css'],
 })
 export class ShipListComponent {
   sale: ShippedSale = {

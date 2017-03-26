@@ -26,8 +26,8 @@ var ShipListComponent = (function () {
 ShipListComponent = __decorate([
     core_1.Component({
         selector: 'ship-list',
-        templateUrl: 'dash/shiplist.html',
-        styleUrls: ['dash/shiplist.css'],
+        templateUrl: 'shiplist.component.html',
+        styleUrls: ['shiplist.component.css'],
     })
 ], ShipListComponent);
 exports.ShipListComponent = ShipListComponent;

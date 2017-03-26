@@ -50,7 +50,7 @@ router.post('/api/v1/todos', (req, res, next) => {
 /* ==== GET ==== */
 router.get('/api/v1/todos', (req, res, next) => {
   const results = [];
-  // get a Postgres client from the connection pool
+  // get a Postgres dash from the connection pool
   pg.connect(connectionString, (err, client, done) => {
     // handle connection errors
     if(err) {
@@ -81,7 +81,7 @@ router.put('/api/v1/todos/:todo_id', (req, res, next) => {
   const id = req.params.todo_id;
   // Grab data from http request
   const data = {text: req.body.text, complete: req.body.complete};
-  // Get a Postgres client from the connection pool
+  // Get a Postgres dash from the connection pool
   pg.connect(connectionString, (err, client, done) => {
     // Handle connection errors
     if(err) {
@@ -113,7 +113,7 @@ router.delete('/api/v1/todos/:todo_id', (req, res, next) => {
   const results = [];
   // Grab data from the URL parameters
   const id = req.params.todo_id;
-  // Get a Postgres client from the connection pool
+  // Get a Postgres dash from the connection pool
   pg.connect(connectionString, (err, client, done) => {
     // Handle connection errors
     if(err) {

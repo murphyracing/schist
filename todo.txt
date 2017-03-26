@@ -1,0 +1,9 @@
+- figure out directory structure for app
+  code, html & css together
+  code & html, css
+  code, html, & css for one component together
+
+- connect to postgres
+- model weights & dims in sql
+- add model to component
+- add UI to list & select parts, enter weights & dims

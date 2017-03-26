@@ -1,0 +1,41 @@
+{
+  "name": "schist3",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "nodemon --debug=3001 dist/server.js"
+  },
+  "dependencies": {
+    "@angular/animations": "^4.0.0",
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/compiler-cli": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/platform-server": "^4.0.0",
+    "@angular/router": "^4.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.22",
+    "body-parser": "~1.16.0",
+    "cookie-parser": "~1.4.3",
+    "copyfiles": "^1.2.0",
+    "debug": "^2.6.3",
+    "es6-shim": "^0.35.3",
+    "express": "^4.14.1",
+    "morgan": "~1.7.0",
+    "npm-assets": "^0.1.2",
+    "pug": "^2.0.0-beta11",
+    "rxjs": "^5.2.0",
+    "serve-favicon": "~2.3.2",
+    "systemjs": "^0.19.47",
+    "zone.js": "^0.8.5"
+  },
+  "devDependencies": {
+    "@types/debug": "0.0.29",
+    "@types/express": "^4.0.35",
+    "@types/node": "^7.0.11",
+    "typescript": "^2.2.1"
+  }
+}

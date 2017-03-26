@@ -1,5 +1,6 @@
 import * as http from 'http';
 import * as debug from 'debug';
+import * as reload from 'reload';
 
 import Web from './web';
 
@@ -9,6 +10,8 @@ const port = normalizePort(process.env.PORT || 3000);
 Web.set('port', port);
 
 const server = http.createServer(Web);
+reload(server, Web);
+
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

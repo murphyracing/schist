@@ -2,11 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var http = require("http");
 var debug = require("debug");
+var reload = require("reload");
 var web_1 = require("./web");
 debug('ts-express:server');
 var port = normalizePort(process.env.PORT || 3000);
 web_1.default.set('port', port);
 var server = http.createServer(web_1.default);
+reload(server, web_1.default);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

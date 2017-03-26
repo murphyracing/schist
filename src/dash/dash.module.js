@@ -7,9 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var forms_1 = require("@angular/forms"); // <-- NgModel lives here
+var http_1 = require("@angular/http");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
+var forms_1 = require("@angular/forms"); // <-- NgModel lives here
+var platform_browser_1 = require("@angular/platform-browser");
 var shiplist_component_1 = require("./shiplist/shiplist.component");
 var DashModule = (function () {
     function DashModule() {
@@ -19,9 +20,11 @@ var DashModule = (function () {
 DashModule = __decorate([
     core_1.NgModule({
         imports: [
-            ng_bootstrap_1.NgbModule.forRoot(),
             platform_browser_1.BrowserModule,
-            forms_1.FormsModule
+            forms_1.FormsModule,
+            http_1.HttpModule,
+            http_1.JsonpModule,
+            ng_bootstrap_1.NgbModule.forRoot(),
         ],
         declarations: [
             shiplist_component_1.ShipListComponent

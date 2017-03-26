@@ -5,10 +5,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var rxjs_1 = require("rxjs");
+var ShipListData_1 = require("./ShipListData");
 var ShippedSale = (function () {
     function ShippedSale() {
     }
@@ -16,21 +18,13 @@ var ShippedSale = (function () {
 }());
 exports.ShippedSale = ShippedSale;
 var ShipListComponent = (function () {
-    function ShipListComponent(http) {
-        this.http = http;
-        this.last_error = "";
-        this.ep = 'http://localhost:3000/api/v1';
+    function ShipListComponent(shipData) {
+        this.shipData = shipData;
     }
     ShipListComponent.prototype.postItem = function (event) {
+        var _this = this;
         event.preventDefault();
-        var body = { text: this.textInputValue, complete: false };
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        this.http
-            .post(this.ep, body, options)
-            .map(function (res) { return res.json(); })
-            .catch(function (error) { return rxjs_1.Observable.throw(error.json().error || 'Server error'); });
-        this.textInputValue = "";
+        this.shipData.postItem(this.itemTitle, this.itemIsComplete).subscribe(function (result) { return _this.itemTitle = JSON.stringify(result); }, function (error) { console.error(error); _this.itemTitle = error; });
     };
     return ShipListComponent;
 }());
@@ -39,7 +33,9 @@ ShipListComponent = __decorate([
         selector: 'ship-list',
         templateUrl: 'shiplist/shiplist.component.html',
         styleUrls: ['shiplist/shiplist.component.css'],
-    })
+        providers: [ShipListData_1.ShipListData]
+    }),
+    __metadata("design:paramtypes", [ShipListData_1.ShipListData])
 ], ShipListComponent);
 exports.ShipListComponent = ShipListComponent;
 //# sourceMappingURL=shiplist.component.js.map

@@ -1,7 +1,5 @@
-import * as request from 'request';
-import { Component } from '@angular/core';
-import {Headers, Http, RequestOptions, Response} from "@angular/http";
-import {Observable} from "rxjs";
+import {Component, Input} from '@angular/core';
+import {ShipListData} from "./ShipListData";
 
 export class ShippedSale {
   saleNo: number;
@@ -13,26 +11,20 @@ export class ShippedSale {
   selector: 'ship-list',
   templateUrl: 'shiplist/shiplist.component.html',
   styleUrls: ['shiplist/shiplist.component.css'],
+  providers: [ShipListData]
 })
 export class ShipListComponent {
-  constructor (private http: Http) {}
+  constructor (private shipData: ShipListData) {}
 
-  textInputValue: string;
-  last_error: string = "";
-  private ep = 'http://localhost:3000/api/v1';
+  itemTitle: string;
+  itemIsComplete: boolean;
+
 
   postItem(event) {
     event.preventDefault();
-
-    const body = {text: this.textInputValue, complete: false};
-    const headers = new Headers({'Content-Type': 'application/json'});
-    const options = new RequestOptions({headers: headers});
-
-    this.http
-        .post(this.ep, body, options)
-        .map((res:Response) => res.json())
-        .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-
-    this.textInputValue = "";
+    this.shipData.postItem(this.itemTitle, this.itemIsComplete).subscribe(
+        result => this.itemTitle = JSON.stringify(result),
+        error => { console.error(error); this.itemTitle = error }
+    );
   }
 }

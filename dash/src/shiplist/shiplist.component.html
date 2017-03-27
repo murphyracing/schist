@@ -1,0 +1,29 @@
+<h1 style="padding-left: 1em">Add an item</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-sm-8 col-xs-7">
+      <input
+          id="itemTitle"
+          name="textInputValue"
+          class="form-control"
+          type="text"
+          [(ngModel)]="itemTitle">
+    </div>
+    <div class="col-md-1 col-sm-1 col-xs-2">
+      <button
+        class="btn btn-primary"
+        data-toggle="button">
+        Complete
+      </button>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-3">
+      <button
+          class="btn btn-primary active"
+          type="button"
+          id="postItem"
+          (click)="postItem($event)">
+        Post
+      </button>
+    </div>
+  </div>
+</div>
